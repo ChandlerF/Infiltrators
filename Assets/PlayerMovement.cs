@@ -15,7 +15,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector2 MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         MoveVelocity = MoveInput.normalized * Speed;
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + MoveVelocity * Time.fixedDeltaTime);   
     }
 }
