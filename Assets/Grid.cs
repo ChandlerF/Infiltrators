@@ -9,18 +9,19 @@ public class Grid
     private int Width;
     private int Height;
     private float CellSize;
+    private Vector3 OriginPosition;
     private int[,] GridArray; //"[,]" defines a multidimensional array with 2 dimensions
     private TextMesh[,] DebugTextArray;
 
 
 
 
-    public Grid(int Width, int Height, float CellSize)
+    public Grid(int Width, int Height, float CellSize, Vector3 OriginPosition)
     {
         this.Width = Width;
         this.Height = Height;
         this.CellSize = CellSize;
-
+        this.OriginPosition = OriginPosition;
         GridArray = new int[Width, Height];
         DebugTextArray = new TextMesh[Width, Height];
 
@@ -43,13 +44,13 @@ public class Grid
 
     private Vector3 GetWorldPosition(int x, int y)
     {
-        return new Vector3(x, y) * CellSize;
+        return new Vector3(x, y) * CellSize + OriginPosition;
     }
 
     private void GetXY(Vector3 worldposition, out int x, out int y)
     {
-        x = Mathf.FloorToInt(worldposition.x / CellSize);
-        y = Mathf.FloorToInt(worldposition.y / CellSize);
+        x = Mathf.FloorToInt((worldposition - OriginPosition).x / CellSize);
+        y = Mathf.FloorToInt((worldposition - OriginPosition).y / CellSize);
 
     }
 
@@ -65,5 +66,24 @@ public class Grid
         int x, y;
         GetXY(worldposition, out x, out y);
         SetValue(x, y, value);
+    }
+
+    public int GetValue(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && x < Width && y < Height)
+        {
+            return GridArray[x, y];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int GetValue(Vector3 worldposition)
+    {
+        int x, y;
+        GetXY(worldposition, out x, out y);
+        return GetValue(x, y);
     }
 }
