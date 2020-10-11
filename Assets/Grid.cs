@@ -38,7 +38,7 @@ public class Grid
         Debug.DrawLine(GetWorldPosition(0, Height), GetWorldPosition(Width, Height), Color.white, 100f);
         Debug.DrawLine(GetWorldPosition(Width, 0), GetWorldPosition(Width, Height), Color.white, 100f);
 
-        SetValue(2, 1, 56);
+        //SetValue(2, 1, 56);
 
     }
 

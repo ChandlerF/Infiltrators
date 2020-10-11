@@ -9,14 +9,14 @@ public class Testing : MonoBehaviour
 
     private void Start()
     {
-        grid = new Grid(4, 2, 10f, new Vector3(20, 0));
+        grid = new Grid(20, 4, 4f, new Vector3(20, 0));
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            grid.SetValue(UtilsClass.GetMouseWorldPosition(), 56);
+            grid.SetValue(UtilsClass.GetMouseWorldPosition(), grid.GetValue(UtilsClass.GetMouseWorldPosition()) + 1);
         }
 
         if (Input.GetMouseButtonDown(1))
