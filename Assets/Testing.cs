@@ -5,23 +5,12 @@ using CodeMonkey.Utils;
 
 public class Testing : MonoBehaviour
 {
-   // [SerializeField] private HeatMapVisual HeatMapVisual;
-    private Grid grid;
-
+  
     private void Start()
     {
-        grid = new Grid(20, 100, 6f, Vector3.zero);
-
-     //   HeatMapVisual.SetGrid(grid);
+        //Pathfinding pathfinding = new Pathfinding(10, 10);
     }
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 Position = UtilsClass.GetMouseWorldPosition();
-        //    grid.AddValue(Position, 100, 2, 25);
-        }
-    }
+   
 
 
 

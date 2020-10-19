@@ -4,13 +4,13 @@ using UnityEngine;
 using CodeMonkey.Utils;
 
 
-public class Grid
+public class Grid<TGridObject>
 {
     private int Width;
     private int Height;
     private float CellSize;
     private Vector3 OriginPosition;
-    private int[,] GridArray; //"[,]" defines a multidimensional array with 2 dimensions
+    private TGridObject[,] GridArray; //"[,]" defines a multidimensional array with 2 dimensions
     private TextMesh[,] DebugTextArray;
 
 
@@ -22,7 +22,7 @@ public class Grid
         this.Height = Height;
         this.CellSize = CellSize;
         this.OriginPosition = OriginPosition;
-        GridArray = new int[Width, Height];
+        GridArray = new TGridObject[Width, Height];
         DebugTextArray = new TextMesh[Width, Height];
 
         for(int x = 0; x < GridArray.GetLength(0); x++)  //Cycles through a multi dimensional array
@@ -54,7 +54,7 @@ public class Grid
 
     }
 
-    public void SetValue(int x, int y, int value)
+    public void SetValue(int x, int y, TGridObject value)
     {
         if(x >= 0 && y >= 0 && x < Width && y < Height)
         {
@@ -62,13 +62,13 @@ public class Grid
             DebugTextArray[x, y].text = GridArray[x, y].ToString();
         }
     }
-    public void SetValue(Vector3 worldposition, int value){
+    public void SetValue(Vector3 worldposition, TGridObject value){
         int x, y;
         GetXY(worldposition, out x, out y);
         SetValue(x, y, value);
     }
 
-    public int GetValue(int x, int y)
+    public TGridObject GetValue(int x, int y)
     {
         if (x >= 0 && y >= 0 && x < Width && y < Height)
         {
@@ -76,11 +76,11 @@ public class Grid
         }
         else
         {
-            return -1;
+            return default(TGridObject);
         }
     }
 
-    public int GetValue(Vector3 worldposition)
+    public TGridObject GetValue(Vector3 worldposition)
     {
         int x, y;
         GetXY(worldposition, out x, out y);
