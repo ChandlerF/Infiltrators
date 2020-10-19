@@ -11,13 +11,13 @@ public class MarineDropShip : MonoBehaviour
     public float AmountOfMarines;
     private bool StartedSpawning = false;
     private Vector3 SpawnLocation;
-    public float SpawnOffsetX;
-    public float SpawnOffsetY;
-
+    public GameObject[] SpawnPoints;
 
     void Start()
     {
         TimeUntilSpawns = StartTimeUntilSpawns;
+        SpawnPoints = GameObject.FindGameObjectsWithTag("MarineDropShipSpawnPoint");
+
     }
 
     void Update()
@@ -37,10 +37,9 @@ public class MarineDropShip : MonoBehaviour
         StartedSpawning = true;
         for(int x = 0; x <= AmountOfMarines; x++)
         {
-            SpawnLocation.x += SpawnOffsetX;
-            SpawnLocation.y += SpawnOffsetY;
-
+            SpawnLocation = SpawnPoints[x].transform.position;
             Instantiate(Marine, SpawnLocation, Quaternion.identity);
+
         }
     }
 }
