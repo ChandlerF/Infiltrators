@@ -25,7 +25,7 @@ public class FindingNearestEnemy : MonoBehaviour
     {
         if(collision.isTrigger != true && collision.CompareTag("Enemy"))
         {
-            //Debug.Log("Enemy Found");
+            Debug.Log("Enemy Found");
             if(ClosestEnemy != null)
             {
                 ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
@@ -53,7 +53,7 @@ public class FindingNearestEnemy : MonoBehaviour
             ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
         }
     }
-
+    
     public Transform GetClosestEnemy()
     {
         MultipleEnemies = GameObject.FindGameObjectsWithTag("Enemy");
