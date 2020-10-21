@@ -15,17 +15,24 @@ public class FindingNearestEnemy : MonoBehaviour
         EnemyContact = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        /*if(ClosestEnemy == null)
+        {
+            ClosestEnemy = GetClosestEnemy();
+            
+        }
+        else
+        {
+            ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1, 0.7f, 0, 1);
+            EnemyContact = true;
+        }*/
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.isTrigger != true && collision.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy Found");
             if(ClosestEnemy != null)
             {
                 ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
