@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MarineDropShipSpawnPoint
   - Enemy
+  - Marine
+  - MarineHitbox
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Marine
+  - Bullets
   - 
   - 
   - 
@@ -49,7 +51,7 @@ TagManager:
   - name: Background_Above
     uniqueID: 3974718737
     locked: 0
-  - name: Allies
+  - name: Marines
     uniqueID: 4040384201
     locked: 0
   - name: Enemies

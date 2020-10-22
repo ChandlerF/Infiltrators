@@ -7,6 +7,7 @@ public class FindingNearestEnemy : MonoBehaviour
     private GameObject[] MultipleEnemies;
     public Transform ClosestEnemy;
     public bool EnemyContact;
+    public string TagOfEnemy;
 
 
     void Start()
@@ -15,9 +16,9 @@ public class FindingNearestEnemy : MonoBehaviour
         EnemyContact = false;
     }
 
-    void Update()
+   /* void Update()
     {
-        /*if(ClosestEnemy == null)
+        if(ClosestEnemy == null)
         {
             ClosestEnemy = GetClosestEnemy();
             
@@ -26,44 +27,44 @@ public class FindingNearestEnemy : MonoBehaviour
         {
             ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1, 0.7f, 0, 1);
             EnemyContact = true;
-        }*/
-    }
+        }
+    }*/
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.isTrigger != true && collision.CompareTag("Enemy"))
+        if(collision.isTrigger != true && collision.CompareTag(TagOfEnemy))
         {
-            if(ClosestEnemy != null)
+            /*if(ClosestEnemy != null)
             {
                 ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
-            }
+            }*/
 
             ClosestEnemy = GetClosestEnemy();
-            ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1, 0.7f, 0, 1);
+            //ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1, 0.7f, 0, 1);
             EnemyContact = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.isTrigger != true && collision.CompareTag("Enemy")) { 
+        if(collision.isTrigger != true && collision.CompareTag(TagOfEnemy)) { 
 
             EnemyContact = false;
-            ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
+            //ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
         }
     }
 
     private void OnDestroy()
     {
-        if (ClosestEnemy != null)
+        /*if (ClosestEnemy != null)
         {
             ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
-        }
+        }*/
     }
     
     public Transform GetClosestEnemy()
     {
-        MultipleEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        MultipleEnemies = GameObject.FindGameObjectsWithTag(TagOfEnemy);
         float ClosestDistance = Mathf.Infinity;
         Transform trans = null;
 
