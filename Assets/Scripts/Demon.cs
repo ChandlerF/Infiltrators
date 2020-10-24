@@ -28,7 +28,7 @@ public class Demon : MonoBehaviour
         //Debug.Log(col.gameObject.name);
         if (col.gameObject.tag == ("MarineHitbox"))
         {
-            Debug.Log(col.gameObject.name);
+            //Debug.Log(col.gameObject.name);
             Destroy(col.gameObject.transform.parent.gameObject);
         }
     }

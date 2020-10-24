@@ -180,6 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad613b1c6f753a44aad917891292bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 481105131256050059, guid: 5ee498ba5fa4a044cb223ab35d0e85a0, type: 3}
+  RadarScript: {fileID: 559573819}
+  MySpriteRenderer: {fileID: 5662977667359694937}
 --- !u!1 &5662977667868054571
 GameObject:
   m_ObjectHideFlags: 0
