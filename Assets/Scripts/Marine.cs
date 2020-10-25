@@ -11,20 +11,34 @@ public class Marine : MonoBehaviour
     public GameObject RadarScript;
     public float StopDistance;
 
+    public float StartTimerToShoot;
+    private float TimerToShoot;
+    public Rifle RifleScript;
+
     void Start()
     {
         Speed = Random.Range(MaxSpeed, MinSpeed);
-
+        TimerToShoot = StartTimerToShoot;
     }
 
     void Update()
     {
-        if (RadarScript.GetComponent<FindingNearestEnemy>().ClosestEnemy != null)
+        Transform CloseEnemy = RadarScript.GetComponent<FindingNearestEnemy>().ClosestEnemy;
+        if (CloseEnemy != null)
         {
-            float DistanceBetween = Vector3.Distance(transform.position, RadarScript.GetComponent<FindingNearestEnemy>().ClosestEnemy.position);
+            float DistanceBetween = Vector3.Distance(transform.position, CloseEnemy.position);
             if (DistanceBetween > StopDistance)
             {
-                transform.position = Vector2.MoveTowards(transform.position, RadarScript.GetComponent<FindingNearestEnemy>().ClosestEnemy.transform.position, Speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, CloseEnemy.position, Speed * Time.deltaTime);
+            } else if (TimerToShoot <= 0)
+            {
+                RifleScript.Shoot();
+                TimerToShoot = StartTimerToShoot;
+            }
+
+            if(TimerToShoot > 0)
+            {
+                TimerToShoot -= Time.deltaTime;
             }
         }
     }

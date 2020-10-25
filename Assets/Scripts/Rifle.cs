@@ -43,8 +43,9 @@ public class Rifle : MonoBehaviour
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
         Instantiate(Bullet, gameObject.transform.position, Quaternion.identity);
+        Bullet.transform.Translate(Vector3.forward * Time.deltaTime);
     }
 }
