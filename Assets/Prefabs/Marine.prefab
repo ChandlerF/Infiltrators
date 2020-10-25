@@ -322,7 +322,7 @@ MonoBehaviour:
   MaxSpeed: 20
   RadarScript: {fileID: 559573819}
   StopDistance: 20
-  StartTimerToShoot: 0.2
+  StartTimerToShoot: 0.5
   RifleScript: {fileID: 7570003118410381596}
 --- !u!61 &6926018758274417671
 BoxCollider2D:
