@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Marine
   - MarineHitbox
+  - Bullets
   layers:
   - Default
   - TransparentFX

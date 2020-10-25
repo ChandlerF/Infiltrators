@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Demon : MonoBehaviour
 {
+    public float Health;
 
     private float Speed;
     public float MinSpeed;
     public float MaxSpeed;
     public GameObject RadarScript;
+
+    public HealthBar HealthBarScript;
 
     void Start()
     {
@@ -17,9 +20,16 @@ public class Demon : MonoBehaviour
 
     void Update()
     {
+        HealthBarScript.SetHealth(Health);
+
         if (RadarScript.GetComponent< FindingNearestEnemy>().ClosestEnemy != null)
         {
                 transform.position = Vector2.MoveTowards(transform.position, RadarScript.GetComponent<FindingNearestEnemy>().ClosestEnemy.transform.position, Speed * Time.deltaTime);
+        }
+
+        if(Health <= 0)
+        {
+            Death();
         }
     }
 
@@ -31,5 +41,15 @@ public class Demon : MonoBehaviour
             //Debug.Log(col.gameObject.name);
             Destroy(col.gameObject.transform.parent.gameObject);
         }
+    }
+
+    public void Damage(float dmg)
+    {
+        Health -= dmg;
+    }
+
+    void Death()
+    {
+        Destroy(gameObject);
     }
 }

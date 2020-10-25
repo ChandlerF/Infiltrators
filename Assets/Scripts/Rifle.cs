@@ -8,19 +8,20 @@ public class Rifle : MonoBehaviour
     public GameObject Bullet;
     public GameObject RadarScript;
 
-    public SpriteRenderer MySpriteRenderer;
+    //public SpriteRenderer MySpriteRenderer; Not using sprite renderer.flip because shoot point doesnt move with it
 
+    public GameObject ShootPoint;
    
     void Update()
     {
 
         if (gameObject.transform.rotation.z < -0.75 || gameObject.transform.rotation.z > 0.75)  //Flips gun towards enemy if rotated enough
         {
-            MySpriteRenderer.flipY = true;
+            transform.localScale = new Vector3(.77f, -.77f, .77f);
         }
         else
         {
-            MySpriteRenderer.flipY = false;
+            transform.localScale = new Vector3(.77f, .77f, .77f);
         }
 
         
@@ -45,6 +46,6 @@ public class Rifle : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(Bullet, gameObject.transform.position, Quaternion.identity);
+        Instantiate(Bullet, ShootPoint.transform.position, gameObject.transform.rotation);
     }
 }
